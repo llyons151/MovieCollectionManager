@@ -31,6 +31,7 @@ struct Movie
 };
 
 bool loadMovies(std::string& szFilename, Movie moviesArr[], int& iSize);
+void displayMovies(const Movie moviesArr[], int iSize);
 
 int main()
 {
@@ -77,7 +78,29 @@ bool loadMovies(std::string& szFilename, Movie moviesArr[], int& iSize)
     return true;
 };
 
+void displayMovies(const Movie moviesArr[], int iSize)
+{
+    std::cout << std::left
+              << std::setw(3) << "N"
+              << std::setw(25) << "Title"
+              << std::setw(20) << "Director"
+              << std::setw(8) << "Runtime"
+              << std::setw(10) << "Watched"
+              << std::setw(6) << "Year"
+              << std::endl;
 
+    for (int i = 0; i < iSize; i++) {
+        const Movie& m = moviesArr[i];
+
+        std::cout << std::setw(3) << i + 1
+                  << std::setw(25) << m.szTitle
+                  << std::setw(20) << m.szDirector
+                  << std::setw(8) << m.iRuntime
+                  << std::setw(10) << m.iWatched
+                  << std::setw(6) << m.iYear
+                  << std::endl;
+    }
+};
 
 
 
