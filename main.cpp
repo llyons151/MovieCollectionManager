@@ -33,6 +33,7 @@ struct Movie
 bool loadMovies(std::string& szFilename, Movie moviesArr[], int& iSize);
 void displayMovies(const Movie moviesArr[], int iSize);
 void watchMovie(Movie moviesArr[], int iSize, int iMovieIndex);
+int calculateTotalRuntime(const Movie moviesArr[], int iSize);
 
 int main()
 {
@@ -114,5 +115,15 @@ void watchMovie(Movie moviesArr[], int iSize, int iMovieIndex)
     moviesArr[iMovieIndex].iWatched += 1;
 };
 
+int calculateTotalRuntime(const Movie moviesArr[], int iSize)
+{
+    int iTotalRuntime = 0;
 
+    for(int i = 0; i < iSize; i++)
+    {
+        iTotalRuntime += moviesArr[i].iRuntime;
+    };
+    
+    return iTotalRuntime;
+};
 
