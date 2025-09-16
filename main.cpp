@@ -40,7 +40,39 @@ int main()
 {
     std::string szFilename;
     int iNumMovies;
+    int iSize;
     Movie moviesArr[200];
+
+    std::cout << "Please enter a file to open: ";
+    std::cin >> szFilename;
+
+    bool bIsLoaded = loadMovies(szFilename, moviesArr, iSize);
+    if(!bIsLoaded)
+    {
+        std::cout << "not found. Exiting program";
+        return -1;
+    };
+    
+    while(true)
+    {
+        displayMovies(moviesArr, iSize);
+        
+        std::string szSelectedMovie;
+        std::cout << "Enter the movie number to watch (or \"quit\"): ";
+        std::cin >> szSelectedMovie;
+
+        if(szSelectedMovie == "quit")
+        {
+            int iTotalRuntime = calculateTotalRuntime(moviesArr, iSize);
+            int iLeastWatched = findLeastWatched(moviesArr, iSize);
+
+            std::cout << "Total runtime of all movies: " << iTotalRuntime << std::endl;
+            std::cout << "Least watched movie: " << iLeastWatched << std::endl;
+            break;
+        };
+        int iSelectedMovie = std::stoi(szSelectedMovie);
+        watchMovie(moviesArr, iSize, iSelectedMovie); 
+    };
 
     return 0;
 }
