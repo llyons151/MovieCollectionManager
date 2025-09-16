@@ -34,6 +34,7 @@ bool loadMovies(std::string& szFilename, Movie moviesArr[], int& iSize);
 void displayMovies(const Movie moviesArr[], int iSize);
 void watchMovie(Movie moviesArr[], int iSize, int iMovieIndex);
 int calculateTotalRuntime(const Movie moviesArr[], int iSize);
+int findLeastWatched(const Movie moviesArr[], int iSize);
 
 int main()
 {
@@ -126,4 +127,24 @@ int calculateTotalRuntime(const Movie moviesArr[], int iSize)
     
     return iTotalRuntime;
 };
+
+int findLeastWatched(const Movie moviesArr[], int iSize)
+{
+    int iLeastWatchedTime = moviesArr[0].iWatched;
+    int iLeastWatchedIndex = 0;
+
+    for(int i = 1; i < iSize; i++)
+    {
+        if(moviesArr[i].iWatched < iLeastWatchedTime)
+        {
+            iLeastWatchedTime = moviesArr[i].iWatched;
+            iLeastWatchedIndex = i;
+        };
+    };
+
+    return iLeastWatchedIndex;
+};
+
+
+
 
