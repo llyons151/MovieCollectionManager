@@ -32,6 +32,7 @@ struct Movie
 
 bool loadMovies(std::string& szFilename, Movie moviesArr[], int& iSize);
 void displayMovies(const Movie moviesArr[], int iSize);
+void watchMovie(Movie moviesArr[], int iSize, int iMovieIndex);
 
 int main()
 {
@@ -102,7 +103,16 @@ void displayMovies(const Movie moviesArr[], int iSize)
     }
 };
 
+void watchMovie(Movie moviesArr[], int iSize, int iMovieIndex)
+{
+    if(iMovieIndex >= iSize)
+    {
+        std::cout << "No movie to watch" << std::endl;
+        return;
+    };
 
+    moviesArr[iMovieIndex].iWatched += 1;
+};
 
 
 
